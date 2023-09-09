@@ -11,6 +11,10 @@ const App = observer(() => {
     counter.decrement();
   };
 
+  const handleFetchTodo = () => {
+    counter.fetchTodo();
+  };
+
   return (
     <>
       <h1>Counter</h1>
@@ -18,6 +22,10 @@ const App = observer(() => {
 
       <button onClick={handleIncrement}>Increment</button>
       <button onClick={handleDecrement}>Decrement</button>
+
+      <h1>Fetch todo</h1>
+      <button onClick={handleFetchTodo}>Fetch todo</button>
+      <p>{counter.todo?.title}</p>
     </>
   );
 });

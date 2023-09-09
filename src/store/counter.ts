@@ -1,7 +1,8 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 
 class Counter {
   count = 0;
+  todo: any = {};
 
   constructor() {
     makeAutoObservable(this);
@@ -13,6 +14,17 @@ class Counter {
 
   decrement() {
     this.count = this.count - 1;
+  }
+
+  fetchTodo() {
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+      .then(response => response.json())
+      .then(json => {
+        runInAction(() => {
+          this.todo = json;
+          console.log(json);
+        });
+      });
   }
 }
 
