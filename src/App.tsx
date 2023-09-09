@@ -1,26 +1,25 @@
-import { useState } from 'react';
+import { observer } from 'mobx-react-lite';
 import './App.css';
+import { counter } from './store';
 
-function App() {
-  const [count, setCount] = useState(0);
-
+const App = observer(() => {
   const handleIncrement = () => {
-    setCount(count + 1);
+    counter.increment();
   };
 
   const handleDecrement = () => {
-    setCount(count - 1);
+    counter.decrement();
   };
 
   return (
     <>
       <h1>Counter</h1>
-      <p>Current count: {count}</p>
+      <p>Current count: {counter.count}</p>
 
       <button onClick={handleIncrement}>Increment</button>
       <button onClick={handleDecrement}>Decrement</button>
     </>
   );
-}
+});
 
 export default App;
